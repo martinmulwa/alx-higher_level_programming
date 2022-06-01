@@ -1,2 +1,3 @@
 *.c
 *main.py
+*__pycache__*
