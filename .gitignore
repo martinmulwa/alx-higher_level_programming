@@ -1,4 +1,3 @@
-*.c
-*.h
+*tests*
 *main.py
 *__pycache__*
