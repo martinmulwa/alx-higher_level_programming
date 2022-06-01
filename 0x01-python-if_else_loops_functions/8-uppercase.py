@@ -21,10 +21,8 @@ def uppercase(str):
     """
     n = len(str)
 
-    for i in range(n):
-        c = ord(str[i]) - 32 if islower(str[i]) else ord(str[i])
+    for c in str:
+        value = ord(c) - 32 if islower(c) else ord(c)
+        print("{:c}".format(value), end="")
 
-        if i < n - 1:
-            print("{:c}".format(c), end="")
-        else:
-            print("{:c}".format(c))
+    print()
