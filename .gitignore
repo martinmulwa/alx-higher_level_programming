@@ -1,4 +1,2 @@
-0x00-python-hello_world/10-linked_lists.c
-0x00-python-hello_world/10-main.c
-0x00-python-hello_world/cycle
-0x00-python-hello_world/main.py
+*.c
+*main.py
