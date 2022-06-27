@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""2-rectangle.py"""
+"""3-rectangle.py"""
 
 
 class Rectangle:
@@ -67,5 +67,8 @@ class Rectangle:
 
     def __str__(self):
         """String representation of a rectangle """
+        if self.width == 0 or self.height == 0:
+            return ""
+
         result = ["#" * self.width for i in range(self.height)]
         return "\n".join(result)
