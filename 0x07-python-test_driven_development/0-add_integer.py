@@ -1,20 +1,32 @@
 #!/usr/bin/python3
-""" 0-add_integer Module """
+"""0-add_integer.py"""
 
 
 def add_integer(a, b=98):
     """
     Adds two integers
+
     Args:
-        a: first integer
-        b: second integer
-    Returns:
-        addition of two integers
+        a: 1st integer
+        b: 2nd integer
+
+    Returns: Sum of a and b
     """
-    if type(a) is not int and type(a) is not float:
+    # check that a and b are either integer or float
+    if type(a) not in [int, float]:
         raise TypeError("a must be an integer")
-    elif type(b) is not int and type(b) is not float:
+    if type(b) not in [int, float]:
         raise TypeError("b must be an integer")
-    else:
-        new_a, new_b = int(a), int(b)
-        return new_a + new_b
+
+    # try to convert to integers
+    try:
+        a = int(a)
+    except Exception:
+        raise ValueError("cannot convert a to an integer")
+
+    try:
+        b = int(b)
+    except Exception:
+        raise ValueError("cannot convert b to an integer")
+
+    return a + b

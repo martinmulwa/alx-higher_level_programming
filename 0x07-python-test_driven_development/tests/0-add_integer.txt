@@ -4,26 +4,51 @@ The ``0-add_integer`` module
 Using ``add_integer``
 ---------------------
 
-First import ``add_integer`` from the ``add_integer`` module:
+Import ``add_integer`` from the ``add_integer`` module:
 
     >>> add_integer = __import__('0-add_integer').add_integer
 
-Now use it:
+Tests:
+
+Regular Addition:
 
     >>> add_integer(1, 2)
     3
 
+    >>> add_integer(117, -17.57484)
+    100
+
+    >>> add_integer(-17245.63434343343, -1500.45464454)
+    -18745
+
+    >>> add_integer(-1212.5654, 232.564)
+    -980
+
+Missing arguments:
+
     >>> add_integer(-5)
     93
 
-    >>> add_integer(2.7, 37)
-    39
+    >>> add_integer()
+    Traceback (most recent call last):
+    TypeError: add_integer() missing 1 required positional argument: 'a'
 
-    >>> add_integer(117, 23.57484)
-    140
+Float overflow:
 
-    >>> add_integer(1212.5654, 232.564)
-    1444
+    >>> import sys
+    >>> add_integer(sys.float_info.max * 2)
+    Traceback (most recent call last):
+    ValueError: cannot convert a to an integer
+
+    >>> add_integer(12, sys.float_info.max * 3)
+    Traceback (most recent call last):
+    ValueError: cannot convert b to an integer
+
+    >>> add_integer(sys.float_info.max * 6, sys.float_info.max * 12)
+    Traceback (most recent call last):
+    ValueError: cannot convert a to an integer
+
+Invalid types:
 
     >>> add_integer(-12, "hello")
     Traceback (most recent call last):
