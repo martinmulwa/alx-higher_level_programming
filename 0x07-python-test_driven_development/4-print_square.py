@@ -18,7 +18,7 @@ def print_square(size):
 
     # just print new line for square of size 0
     if size == 0:
-        print("")
+        print()
 
     for i in range(size):
         print("#" * size)
