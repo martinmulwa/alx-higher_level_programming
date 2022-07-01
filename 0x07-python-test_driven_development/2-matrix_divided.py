@@ -25,7 +25,7 @@ def is_valid_matrix(matrix):
             return False
         if len(row) != row_size:
             raise TypeError("Each row of the matrix must have the same size")
-            
+
         # check that the current row only contains integers/floats
         for num in row:
             if type(num) not in [int, float]:
@@ -46,7 +46,7 @@ def matrix_divided(matrix, div):
     # check that matrix is valid
     if not is_valid_matrix(matrix):
         raise TypeError("matrix must be a matrix (list of lists) " +
-        "of integers/floats")
+                        "of integers/floats")
 
     # check that div is valid
     if type(div) not in [int, float]:
