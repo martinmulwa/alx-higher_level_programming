@@ -1,0 +1,55 @@
+The ``2-matrix_divided`` module
+=============================
+
+Using ``matrix_divided``
+---------------------
+
+Import ``matrix_divided`` from the ``2-matrix_divided`` module:
+
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Tests:
+
+Regular Division:
+
+    >>> matrix_divided([[1.0, 2, 3]], 3.0)
+    [[0.33, 0.67, 1.0]]
+
+    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], -3)
+    [[-0.33, -0.67, -1.0], [-1.33, -1.67, -2.0]]
+
+
+Empty matrix:
+
+    >>> matrix_divided([], 2)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+Invalid arguments:
+
+    >>> matrix_divided([[1, 2.4, 3], "hi", [4, 5, 6]], 7.0)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix_divided([[1, 2, 3], [7, 8, 9], [4, 5, 6]], "hello")
+    Traceback (most recent call last):
+    TypeError: div must be a number
+
+    >>> matrix_divided([[1, 2, 3], [7, 8, 9], [4, (1, 2), 6]], 22)
+    Traceback (most recent call last):
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix_divided([[1, 2, 3], [7, 8], [4, 5, 6]], -5)
+    Traceback (most recent call last):
+    TypeError: Each row of the matrix must have the same size
+
+    >>> matrix_divided([[1, 2, 3], [7, 8, 9], [4, 5, 6]], 0)
+    Traceback (most recent call last):
+    ZeroDivisionError: division by zero
+
+
+Extreme values e.g. inf, nan:
+
+
+Missing arguments:
