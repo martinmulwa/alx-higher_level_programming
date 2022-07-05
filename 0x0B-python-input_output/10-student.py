@@ -3,17 +3,6 @@
 """
 
 
-def is_valid_str_list(lst):
-    """Checks if the given list is a list of strings
-
-    Args:
-        lst: list
-
-    Returns: True if all the elements in the list are strings. Otherwise False
-    """
-    return type(lst) == list and all([type(s) == str for s in lst])
-
-
 class Student:
     """Defines a student"""
 
@@ -25,8 +14,8 @@ class Student:
 
     def to_json(self, attrs=None):
         """Retrieves a dictionary representation of a Student instance"""
-        if not is_valid_str_list(attrs):
-            return vars(self)
+        if type(attrs) == list and all([type(s) == str for s in attrs]):
+            return {key: value for key, value in vars(self).items()
+                    if key in attrs}
 
-        return {key: value for key, value in vars(self).items()
-                if key in attrs}
+        return vars(self)
