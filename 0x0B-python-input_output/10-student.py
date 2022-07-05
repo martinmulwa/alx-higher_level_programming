@@ -11,10 +11,7 @@ def is_valid_str_list(lst):
 
     Returns: True if all the elements in the list are strings. Otherwise False
     """
-    if type(lst) != list or len(lst) == 0:
-        return False
-
-    return all([type(s) == str for s in lst])
+    return type(lst) == list and all([type(s) == str for s in lst])
 
 
 class Student:
