@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """8-class_to_json Module
 """
-import json
 
 
 def class_to_json(obj):
@@ -12,4 +11,4 @@ def class_to_json(obj):
     Args:
         obj: an instance of a Class
     """
-    return json.dumps(obj, default=vars)
+    return vars(obj)
