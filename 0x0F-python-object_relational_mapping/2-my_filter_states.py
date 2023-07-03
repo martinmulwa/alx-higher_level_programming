@@ -29,8 +29,8 @@ def list_matching_states(
 
     cursor = connection.cursor()
     cursor.execute(
-        "SELECT * FROM states WHERE name=%s ORDER BY id ASC",
-        (user_input,)
+        "SELECT * FROM states WHERE name='{}'\
+        ORDER BY states.id ASC".format(user_input)
     )
 
     rows = cursor.fetchall()
