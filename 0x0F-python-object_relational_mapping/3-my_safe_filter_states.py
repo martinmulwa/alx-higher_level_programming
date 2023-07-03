@@ -1,56 +1,47 @@
 #!/usr/bin/python3
-
-"""
-Script that connects to a MySQL server running on localhost at port 3306
-and retrieves rows from the cities table where the state name matches
-"California". The results are sorted in ascending order by the cities.id column
+""" Script that takes in arguments and displays all values in the
+    states table of hbtn_0e_0_usa where name matches the argument.
+    This version is safe from MySQL injections.
 """
 
-import sys
-import MySQLdb
+if __name__ == '__main__':
+    # Import necessary modules
+    import sys
+    import MySQLdb as sql
 
+    # Extract command line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database_name = sys.argv[3]
+    name_to_find = sys.argv[4]
 
-def get_cities_by_state(username, password, database, state_name):
-    """
-    Connects to a MySQL server running on localhost at port 3306
-    and retrieves rows from the cities table where the state name matches
-    the specified state_name. The results are sorted in ascending order by
-    the cities.id column.
-    """
-    # Connect to MySQL server
-    connection = MySQLdb.connect(
+    # Split user input to prevent SQL injection
+    name_to_find = name_to_find.split("'")[0]
+
+    # Connect to the MySQL database
+    connection = sql.connect(
         host='localhost',
         port=3306,
         user=username,
         passwd=password,
-        db=database
+        db=database_name
     )
 
-    # Create cursor
+    # Create a cursor object to execute queries
     cursor = connection.cursor()
 
-    # Execute SQL query
-    query = "SELECT cities.id, cities.name, states.name FROM cities \
-             JOIN states ON cities.state_id = states.id \
-             WHERE states.name LIKE %s ORDER BY cities.id ASC"
-    cursor.execute(query, (state_name,))
+    # Execute the query to retrieve all rows from the states table
+    # where the name matches the given input
+    cursor.execute("SELECT * FROM states WHERE name='{}'\
+                ORDER BY id".format(name_to_find))
 
-    # Print results
+    # Retrieve all rows returned by the query
     rows = cursor.fetchall()
+
+    # Print the matching rows to the console
     for row in rows:
         print(row)
 
-    # Close cursor and database connection
+    # Close the cursor and the connection to the MySQL database
     cursor.close()
     connection.close()
-
-
-if __name__ == '__main__':
-    # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = 'California'
-
-    # Call function to retrieve cities by state
-    get_cities_by_state(username, password, database, state_name)
