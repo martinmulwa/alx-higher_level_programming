@@ -36,7 +36,8 @@ def list_matching_states(
     rows = cursor.fetchall()
 
     for row in rows:
-        print(row)
+        if row[1] == user_input:
+            print(row)
 
     cursor.close()
     connection.close()
